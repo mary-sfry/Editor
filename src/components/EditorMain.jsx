@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Grid } from '@mui/material';
 import {EditorMainImg, EditorFilter, EditorSetting} from './';
-import EditorMainImg2 from './EditorMainImg2';
 const EditorMain = () => {
 
   const [editorSetting, setEditorSetting]=useState({brightness:1, rotation:0, scaleX: false, scaleY:false})
