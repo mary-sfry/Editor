@@ -1,12 +1,11 @@
 import React from "react";
-import { Box } from "@mui/material";
+import { Button } from "@mui/material";
 import { CgEditFlipH, CgEditFlipV } from "react-icons/cg";
 
 const FlipBox = ({ value, setValue, children }) => {
   return (
-    <Box
+    <Button
       sx={{
-        bgcolor: "#16C2D2",
         px: 3,
         py: 0.5,
         borderRadius: 2,
@@ -14,6 +13,8 @@ const FlipBox = ({ value, setValue, children }) => {
         alignItems: "center",
         cursor: "pointer",
       }}
+      color="primary"
+      variant="contained"
       onClick={
         children === "x"
           ? () => setValue((values) => ({ ...values, scaleX: !value }))
@@ -25,7 +26,7 @@ const FlipBox = ({ value, setValue, children }) => {
       ) : (
         <CgEditFlipV size="40px" color="white" />
       )}
-    </Box>
+    </Button>
   );
 };
 

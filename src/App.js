@@ -12,6 +12,13 @@ const theme = createTheme({
   typography: {
     fontFamily: "shabnam",
   },
+  palette: {
+    primary: {
+      main: '#16C2D2' ,
+      light: '#6ce4f0',
+      dark: '#14aebd',
+    }
+  }
 });
 
 const cacheRtl = createCache({

@@ -12,7 +12,7 @@ export { default as BorderedBox } from "./common/BorderedBox";
 export { default as NumberHolder } from "./common/NumberHolder";
 export { default as RangeBox } from "./common/RangeBox";
 export { default as Title } from "./common/Title";
-export { default as EditorContainer } from "./common/EditorContainer";
+export { default as MainBox } from "./common/MainBox";
 export { default as FlipBox } from "./common/FlipBox";
 
 //common files

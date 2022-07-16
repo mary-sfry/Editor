@@ -19,6 +19,7 @@ const FilteredImg = ({ item }) => {
           flexDirection: "column",
           alignItems: "center",
           cursor: "pointer",
+          overflow:'hidden',
         }}
         onClick={() => filterHandler(item.id)}
       >

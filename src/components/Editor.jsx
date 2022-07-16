@@ -1,12 +1,12 @@
 import React from "react";
-import { EditorHeader, EditorMain, EditorContainer } from "./";
+import { EditorHeader, EditorMain, MainBox } from "./";
 
 const Editor = () => {
   return (
-    <EditorContainer>
+    <MainBox>
       <EditorHeader />
       <EditorMain />
-    </EditorContainer>
+    </MainBox>
   );
 };
 
