@@ -1,35 +1,31 @@
-import { useState } from 'react';
 // start RTL MUI
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-import rtlPlugin from 'stylis-plugin-rtl';
-import { prefixer, whitespace } from 'stylis';
-import { CacheProvider } from '@emotion/react';
-import createCache from '@emotion/cache';
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+import rtlPlugin from "stylis-plugin-rtl";
+import { prefixer } from "stylis";
+import { CacheProvider } from "@emotion/react";
+import createCache from "@emotion/cache";
 // ended RTL MUI
-import { Editor } from './components';
+import { Editor } from "./components";
 
 const theme = createTheme({
-  direction: 'rtl',
+  direction: "rtl",
   typography: {
-    fontFamily: 'shabnam',
+    fontFamily: "shabnam",
   },
 });
 
 const cacheRtl = createCache({
-  key: 'muirtl',
+  key: "muirtl",
   stylisPlugins: [prefixer, rtlPlugin],
 });
 
-
 function App() {
   return (
-    <>
     <CacheProvider value={cacheRtl}>
       <ThemeProvider theme={theme}>
-          <Editor />
+        <Editor />
       </ThemeProvider>
     </CacheProvider>
-    </>
   );
 }
 

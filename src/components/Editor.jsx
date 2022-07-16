@@ -1,5 +1,5 @@
-import React from 'react';
-import { EditorHeader, EditorMain, EditorContainer} from './';
+import React from "react";
+import { EditorHeader, EditorMain, EditorContainer } from "./";
 
 const Editor = () => {
   return (
@@ -7,7 +7,7 @@ const Editor = () => {
       <EditorHeader />
       <EditorMain />
     </EditorContainer>
-  )
-}
+  );
+};
 
 export default Editor;

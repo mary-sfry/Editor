@@ -1,58 +1,63 @@
-import React, { useContext, useState, useRef } from 'react';
-import { Box } from '@mui/material';
-import { filterContext } from '../common/Context';
+import React, { useContext, useState, useRef } from "react";
+import { filterContext } from "../context/FilterContext";
+import flowerImg from "../assets/images/flower.jpg";
 
+const EditorMainImg = ({ editorSetting }) => {
+  const figureRef = useRef();
 
-const EditorMainImg = ({editorSetting}) => {
-
-  const figure = useRef()
-
-  const {filterMethod} = useContext(filterContext);
+  const { filterMethod } = useContext(filterContext);
   const { brightness, rotation, scaleX, scaleY } = editorSetting;
   const [hover, setHover] = useState(false);
   const [pageX, setPageX] = useState(50);
   const [pageY, setPageY] = useState(50);
 
   const mouseMoveHandler = (e) => {
-    console.log();
-    var ClientX = e.clientX - figure.current.offsetLeft;
-    var ClientY = e.clientY - figure.current.offsetTop;
+    let clientX = e.clientX - figureRef.current.offsetLeft;
+    let clientY = e.clientY - figureRef.current.offsetTop;
 
-    const mWidth = figure.current.offsetWidth;
-    const mHeight = figure.current.offsetHeight;
+    const imageWidth = figureRef.current.offsetWidth;
+    const imageHeight = figureRef.current.offsetHeight;
 
-    ClientX = ClientX / mWidth * 100;
-    ClientY = ClientY / mHeight * 100;
+    clientX = (clientX / imageWidth) * 100;
+    clientY = (clientY / imageHeight) * 100;
 
-    setPageX(ClientX)
-    setPageY(ClientY)
-  }
-  
+    setPageX(clientX);
+    setPageY(clientY);
+  };
 
+  const hoverHandler = () => {
+    setHover(!hover);
+  };
+
+  let zoomInRotate =
+    Math.abs(Math.sin(rotation * (Math.PI / 180))) +
+    Math.abs(Math.cos(rotation * (Math.PI / 180)));
+  const filterStyle = {
+    transform: `${
+      hover
+        ? "translate(-" + pageX + "%, -" + pageY + "%) scale(2)"
+        : "translate(-50%, -50%)"
+    }
+    rotate(${rotation}deg) scale(${zoomInRotate})`,
+    filter: `brightness(${brightness}) ${filterMethod} `,
+  };
+
+  const FlipStyle = {
+    transform: `${scaleX ? "scaleX(-1)" : ""} ${scaleY ? "scaleY(-1)" : ""}`,
+  };
 
   return (
-    <>
-      <figure
-        ref={figure}
-        style={{width: '100%',height: '0', overflow: 'hidden', borderRadius: '16px', position: 'relative', paddingBottom: '100%',
-        transform : `${scaleX ? 'scaleX(-1)': ''} ${scaleY ? 'scaleY(-1)': ''}`, transition: 'transform 0.2s ease-out',
-      }}
-        onMouseMove={mouseMoveHandler}
-        onMouseOver={()=>setHover(!hover)}
-        onMouseOut={()=>setHover(!hover)}
-      >
-        <img
-          
-          style={{maxWidth: '100%', minWidth: '100%', height: '100%', position: 'absolute', left: '50%', top: '50%',
-          pointerEvents: 'none',
-          transform: `${hover ? 'translate(-' + pageX + '%, -' + pageY + '%) scale(2)' : 'translate(-50%, -50%)'}  rotate(${rotation}deg) scale(${Math.abs(Math.sin(rotation*(Math.PI/180))) + Math.abs(Math.cos(rotation*(Math.PI/180)))})`,
-          filter: `brightness(${brightness}) ${filterMethod} `,
-          transition: 'transform 0.2s ease-out',
-        }}
-          src="https://i.picsum.photos/id/54/400/400.jpg?hmac=bYiTE5dgf7aeX3u33wjsWzjFQLppWUPbsfVTn33OM9I" />  
-      </figure>        
-    </>
-  )
-}
+    <figure
+      ref={figureRef}
+      className="main-img"
+      style={FlipStyle}
+      onMouseMove={mouseMoveHandler}
+      onMouseOver={hoverHandler}
+      onMouseOut={hoverHandler}
+    >
+      <img style={filterStyle} src={flowerImg} />
+    </figure>
+  );
+};
 
 export default EditorMainImg;
