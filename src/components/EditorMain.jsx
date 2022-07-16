@@ -9,7 +9,7 @@ const EditorMain = () => {
   return (
         <Grid container sx={{pt:2}}>
           <Grid item xs={12} sm={12} md={12} lg={6}>
-            <EditorMainImg2
+            <EditorMainImg
               editorSetting={editorSetting}
             />
           </Grid>
